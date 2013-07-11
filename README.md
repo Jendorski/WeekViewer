@@ -10,6 +10,8 @@ You have a button (bottom, right) to just open the calendar app.
 You can update the view (button at bottom, center).
 It displays the current date when minimized.
 
+Current version has only german translations.
+
 Needs to connect to calendar.
 
 You are welcome to participate, fork, etc.

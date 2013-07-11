@@ -1,6 +1,6 @@
 // List with context menu project template
 #include "applicationui.hpp"
-
+#include "activecover.hpp"
 
 #include <bb/cascades/Application>
 #include <bb/cascades/QmlDocument>
@@ -28,15 +28,9 @@ ApplicationUI::ApplicationUI(QObject *parent)
     QmlDocument *qml = QmlDocument::create("asset:///main.qml").parent(this);
 	qml->setContextProperty("_app", this);
 
-	QmlDocument *qmlCover = QmlDocument::create("asset:///AppCover.qml").parent(this);
-	if (!qmlCover->hasErrors()) {
-	    // Create the QML Container from using the QMLDocument.
-	    Container *coverContainer = qmlCover->createRootObject<Container>();
-
-	    // Create a SceneCover and set the application cover
-	    SceneCover *sceneCover = SceneCover::create().content(coverContainer);
-	    Application::instance()->setCover(sceneCover);
-	}
+	ActiveCover* scene = new ActiveCover();
+	Application::instance()->setCover(scene);
+	qml->setContextProperty("activeFrame", scene);
 
     // create root object for the UI
 	bb::cascades::AbstractPane *root = qml->createRootObject<AbstractPane>();

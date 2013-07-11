@@ -131,7 +131,7 @@ void CustomGroupModel::loadEvents()
 		entries.append(entry);
 	}
 
-	setSortingKeys(QStringList() << "myType" << "order");
+	setSortingKeys(QStringList() << "myType" << "startTime");
 	setGrouping(ItemGrouping::ByFullValue);
 	insertList(entries);
 }

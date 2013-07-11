@@ -3,31 +3,37 @@ BASEDIR =  $$quote($$_PRO_FILE_PWD_)
 
 device {
     CONFIG(debug, debug|release) {
-        SOURCES +=  $$quote($$BASEDIR/src/applicationui.cpp) \
+        SOURCES +=  $$quote($$BASEDIR/src/activecover.cpp) \
+                 $$quote($$BASEDIR/src/applicationui.cpp) \
                  $$quote($$BASEDIR/src/customgroupmodel.cpp) \
                  $$quote($$BASEDIR/src/main.cpp)
 
-        HEADERS +=  $$quote($$BASEDIR/src/applicationui.hpp) \
+        HEADERS +=  $$quote($$BASEDIR/src/activecover.hpp) \
+                 $$quote($$BASEDIR/src/applicationui.hpp) \
                  $$quote($$BASEDIR/src/customgroupmodel.hpp)
     }
 
     CONFIG(release, debug|release) {
-        SOURCES +=  $$quote($$BASEDIR/src/applicationui.cpp) \
+        SOURCES +=  $$quote($$BASEDIR/src/activecover.cpp) \
+                 $$quote($$BASEDIR/src/applicationui.cpp) \
                  $$quote($$BASEDIR/src/customgroupmodel.cpp) \
                  $$quote($$BASEDIR/src/main.cpp)
 
-        HEADERS +=  $$quote($$BASEDIR/src/applicationui.hpp) \
+        HEADERS +=  $$quote($$BASEDIR/src/activecover.hpp) \
+                 $$quote($$BASEDIR/src/applicationui.hpp) \
                  $$quote($$BASEDIR/src/customgroupmodel.hpp)
     }
 }
 
 simulator {
     CONFIG(debug, debug|release) {
-        SOURCES +=  $$quote($$BASEDIR/src/applicationui.cpp) \
+        SOURCES +=  $$quote($$BASEDIR/src/activecover.cpp) \
+                 $$quote($$BASEDIR/src/applicationui.cpp) \
                  $$quote($$BASEDIR/src/customgroupmodel.cpp) \
                  $$quote($$BASEDIR/src/main.cpp)
 
-        HEADERS +=  $$quote($$BASEDIR/src/applicationui.hpp) \
+        HEADERS +=  $$quote($$BASEDIR/src/activecover.hpp) \
+                 $$quote($$BASEDIR/src/applicationui.hpp) \
                  $$quote($$BASEDIR/src/customgroupmodel.hpp)
     }
 }

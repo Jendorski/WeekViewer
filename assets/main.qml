@@ -10,27 +10,68 @@ Page {
             objectName: "listView"
 
             dataModel: _app.model
-//                CustomGroupModel {
-//                id: myListModel
-////                _app.modelToday
-//            }
             
             listItemComponents: [
                 ListItemComponent {
                     type: "header"
                     Label {
-                    	text : "<html><body><span style=\"color:#FF0000\">" + ListItemData + "</span></body></html>"
+                    	text : ListItemData
+                        textStyle {
+                            base: SystemDefaults.TextStyles.BodyText
+                            fontWeight: if (ListItemData == "Heute") FontWeight.Bold; else FontWeight.Normal;
+                            fontSize: if (ListItemData == "Heute") FontSize.Medium; else FontSize.Small;
+                            color: Color.Red 
+                        }
+                        
                     }
-//                    Header {
-//                        title: "<html><body><span style=\"color:#FF0000\">" + ListItemData + "</span></body></html>"
-//                    }
                 },
                 ListItemComponent {
-                    type: "item"
-                    StandardListItem {
-                        title: ListItemData.subject
+                        type: "item"
+                        StandardListItem {
+                        title: "<html><body><span style=\"color:#" + ListItemData.color24 + "\">o </span>" + ListItemData.subject + "</body></html>"
+//                        title: "<html><body><span style=\"color:" + ListItemData.color24 + "\">o</span>" +  ListItemData.subject + "</body></html>"
                         description: ListItemData.timeString
-                    }
+//                            imageSource: if (ListItemData.account == 1) "asset:///images/grey.png";
+//                                        else if (ListItemData.account == 2) "asset:///images/blue.png";
+//                                        else if (ListItemData.account == 3) "asset:///images/pink.png";
+//                                        else if (ListItemData.account == 4) "asset:///images/green.png";
+//                                        else if (ListItemData.account == 5) "asset:///images/darkgreen.png";
+//                                        else if (ListItemData.account == 6) "asset:///images/braun.png"
+                        }
+//                    Container {
+//                        layout: StackLayout {
+//                            orientation: LayoutOrientation.TopToBottom
+//                        }
+//                        Container {
+//                            layout: StackLayout {
+//                                orientation: LayoutOrientation.LeftToRight
+//                            }
+//                            
+////                            ImageView {
+////                                imageSource: if (ListItemData.account == 1) "asset:///images/grey.png";
+////                                			else if (ListItemData.account == 2) "asset:///images/blue.png";
+////                                			else if (ListItemData.account == 3) "asset:///images/pink.png";
+////                                			else if (ListItemData.account == 4) "asset:///images/green.png";
+////                                			else if (ListItemData.account == 5) "asset:///images/darkgreen.png";
+////                                			else if (ListItemData.account == 6) "asset:///images/braun.png"
+////                            }
+//                            Label {
+//                                text: "  " + ListItemData.subject
+//                                textStyle {
+//                                    base: SystemDefaults.TextStyles.BodyText
+//                                    fontWeight: FontWeight.Normal
+//                                    color: if (ListItemData.account == 1) Color.Magenta; else Color.Blue
+//                                }
+//
+//                            }
+//                        }
+//                        Label {
+//                            text: "  " + ListItemData.timeString
+//                            textStyle {
+//                                base: SystemDefaults.TextStyles.SmallText
+//                            }
+//                        }
+//                    } // end of Container
                 }
             ]
             onTriggered: {

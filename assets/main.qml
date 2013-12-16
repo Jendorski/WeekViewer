@@ -28,8 +28,8 @@ Page {
                 ListItemComponent {
                         type: "item"
                         StandardListItem {
-                        title: "<html><body><span style=\"color:#" + ListItemData.color24 + "\">o </span>" + ListItemData.subject + "</body></html>"
-//                        title: "<html><body><span style=\"color:" + ListItemData.color24 + "\">o</span>" +  ListItemData.subject + "</body></html>"
+                        title: "<html><body><span style=\"color:#" + ListItemData.color24 + "\">o </span>" +  ListItemData.subject + "</body></html>"
+//                        title: ListItemData.subject 
                         description: ListItemData.timeString
 //                            imageSource: if (ListItemData.account == 1) "asset:///images/grey.png";
 //                                        else if (ListItemData.account == 2) "asset:///images/blue.png";

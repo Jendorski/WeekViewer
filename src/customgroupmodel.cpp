@@ -52,9 +52,9 @@ QVariant CustomGroupModel::data(const QVariantList& indexPath) {
 		}
 		else {
 			if (diff == 86400)
-				mData["timeString"] = mData["timeString"] = startTime.date().toString(Qt::DefaultLocaleShortDate) + QString::fromUtf8("    Ganztägig");
+				mData["timeString"] = startTime.date().toString("ddd") + " " + startTime.date().toString(Qt::DefaultLocaleShortDate) + QString::fromUtf8("    Ganztägig");
 			else
-				mData["timeString"] = startTime.date().toString(Qt::DefaultLocaleShortDate) + "    " + startTime.time().toString(TIME_FORMAT) + " - " + endTime.time().toString(TIME_FORMAT);
+				mData["timeString"] = startTime.date().toString("ddd") + " " + startTime.date().toString(Qt::DefaultLocaleShortDate) + "    " + startTime.time().toString(TIME_FORMAT) + " - " + endTime.time().toString(TIME_FORMAT);
 		}
 		return mData;
 	}
@@ -108,7 +108,7 @@ void CustomGroupModel::loadEvents()
 		entry["myType"] = QVariant("Heute");
 		entry["eventId"] = event.id();
 		entry["accountId"] = event.accountId();
-		entry["subject"] = event.subject();
+		entry["subject"] = event.subject().replace('&', "&amp;").replace('<', "&lt;").replace('>', "&gt;").replace('"', "&quot;");
 		entry["order"] = order++;
 		entry["startTime"] = event.startTime();
 		entry["endTime"] = event.endTime();
@@ -143,7 +143,7 @@ void CustomGroupModel::loadEvents()
 		entry["myType"] = QVariant("Morgen");
 		entry["eventId"] = event.id();
 		entry["accountId"] = event.accountId();
-		entry["subject"] = event.subject();
+		entry["subject"] = event.subject().replace('&', "&amp;").replace('<', "&lt;").replace('>', "&gt;").replace('"', "&quot;");
 		entry["order"] = order++;
 		entry["startTime"] = event.startTime();
 		entry["endTime"] = event.endTime();
@@ -176,7 +176,7 @@ void CustomGroupModel::loadEvents()
 		entry["myType"] = QVariant("Woche");
 		entry["eventId"] = event.id();
 		entry["accountId"] = event.accountId();
-		entry["subject"] = event.subject();
+		entry["subject"] = event.subject().replace('&', "&amp;").replace('<', "&lt;").replace('>', "&gt;").replace('"', "&quot;");
 		entry["order"] = order++;
 		entry["startTime"] = event.startTime();
 		entry["endTime"] = event.endTime();

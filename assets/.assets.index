@@ -1,7 +1,15 @@
 1
-5
+13
 images/ic_rotate.png
+images/pink.png
+images/darkgreen.png
+images/red.png
+images/grey.png
+images/green.png
+images/braun.png
 images/action_addevent.png
+images/darkgrey.png
+images/blue.png
 main.qml
 AppCover.qml
 mydata.json

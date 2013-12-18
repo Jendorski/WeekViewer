@@ -18,8 +18,8 @@ Page {
                     	text : ListItemData
                         textStyle {
                             base: SystemDefaults.TextStyles.BodyText
-                            fontWeight: if (ListItemData == "Heute") FontWeight.Bold; else FontWeight.Normal;
-                            fontSize: if (ListItemData == "Heute") FontSize.Medium; else FontSize.Small;
+                            fontWeight: if (ListItemData == "Heute" || ListItemData == "Today") FontWeight.Bold; else FontWeight.Normal;
+                            fontSize: if (ListItemData == "Heute" || ListItemData == "Today") FontSize.Medium; else FontSize.Small;
                             color: Color.Red 
                         }
                         

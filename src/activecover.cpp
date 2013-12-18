@@ -39,8 +39,13 @@ ActiveCover::ActiveCover(QObject *parent)
 }
 
 void ActiveCover::update() {
-	qDebug() << "FMI ############## passiert";
-    m_coverLabel->setText(QDate::currentDate().toString(Qt::DefaultLocaleShortDate));
+	qDebug() << "FMI ############## current date: " << QDate::currentDate().toString(Qt::DefaultLocaleShortDate);
+
+	if (QLocale().name().compare("de_DE") == 0 )
+		m_coverLabel->setText(QDate::currentDate().toString("dd.MM.yyyy"));
+	else
+		m_coverLabel->setText(QDate::currentDate().toString(Qt::DefaultLocaleShortDate));
+
 }
 
 

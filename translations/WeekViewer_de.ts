@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0">
+<TS version="2.0" language="de_DE">
 <context>
     <name>ApplicationUI</name>
     <message>
@@ -24,19 +24,19 @@
     <name>CustomGroupModel</name>
     <message>
         <source>week</source>
-        <translation type="unfinished">Week</translation>
+        <translation>Woche</translation>
     </message>
     <message>
         <source>today</source>
-        <translation type="unfinished">Today</translation>
+        <translation>Heute</translation>
     </message>
     <message>
         <source>tomorrow</source>
-        <translation type="unfinished">Tomorrow</translation>
+        <translation>Morgen</translation>
     </message>
     <message>
         <source>wholeday</source>
-        <translation>All day</translation>
+        <translation>Ganztägig</translation>
     </message>
 </context>
 </TS>

@@ -16,7 +16,6 @@ public:
 
 	QVariant data(const QVariantList& indexPath);
 	void loadEvents();
-
 };
 
 #endif

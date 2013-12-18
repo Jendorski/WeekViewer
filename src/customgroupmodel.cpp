@@ -43,16 +43,16 @@ QVariant CustomGroupModel::data(const QVariantList& indexPath) {
 		int diff = startTime.secsTo(endTime);
 //		qDebug() << "FMI ######### item " << mData["myType"].toString() << " subject" << mData["subject"].toString() << " time:" << startTime.toString() << " " << startTime.time().toString() << " " << diff;// << " " << endTime;
 
-		if ((mData["myType"].toString().compare("Heute") == 0) || (mData["myType"].toString().compare("Morgen") == 0))
+		if ((mData["myType"].toString().compare("Heute") == 0) || (mData["myType"].toString().compare("Morgen") == 0) || (mData["myType"].toString().compare("Today") == 0) || (mData["myType"].toString().compare("Tomorrow") == 0))
 		{
 			if (diff == 86400)
-				mData["timeString"] = QString::fromUtf8("Ganztägig");
+				mData["timeString"] = trUtf8("wholeday");
 			else
 				mData["timeString"] = startTime.time().toString(TIME_FORMAT) + " - " + endTime.time().toString(TIME_FORMAT);
 		}
 		else {
 			if (diff == 86400)
-				mData["timeString"] = startTime.date().toString("ddd") + " " + startTime.date().toString(Qt::DefaultLocaleShortDate) + QString::fromUtf8("    Ganztägig");
+				mData["timeString"] = startTime.date().toString("ddd") + " " + startTime.date().toString(Qt::DefaultLocaleShortDate) + "    " + trUtf8("wholeday");
 			else
 				mData["timeString"] = startTime.date().toString("ddd") + " " + startTime.date().toString(Qt::DefaultLocaleShortDate) + "    " + startTime.time().toString(TIME_FORMAT) + " - " + endTime.time().toString(TIME_FORMAT);
 		}
@@ -105,7 +105,7 @@ void CustomGroupModel::loadEvents()
 	foreach (const CalendarEvent &event, events) {
 		// Copy the data into a model entry
 		QVariantMap entry;
-		entry["myType"] = QVariant("Heute");
+		entry["myType"] = QVariant(trUtf8("today"));
 		entry["eventId"] = event.id();
 		entry["accountId"] = event.accountId();
 		entry["subject"] = event.subject().replace('&', "&amp;").replace('<', "&lt;").replace('>', "&gt;").replace('"', "&quot;");
@@ -140,7 +140,7 @@ void CustomGroupModel::loadEvents()
 	foreach (const CalendarEvent &event, events2) {
 		// Copy the data into a model entry
 		QVariantMap entry;
-		entry["myType"] = QVariant("Morgen");
+		entry["myType"] = QVariant(trUtf8("tomorrow"));
 		entry["eventId"] = event.id();
 		entry["accountId"] = event.accountId();
 		entry["subject"] = event.subject().replace('&', "&amp;").replace('<', "&lt;").replace('>', "&gt;").replace('"', "&quot;");
@@ -173,7 +173,8 @@ void CustomGroupModel::loadEvents()
 	foreach (const CalendarEvent &event, events3) {
 		// Copy the data into a model entry
 		QVariantMap entry;
-		entry["myType"] = QVariant("Woche");
+
+		entry["myType"] = QVariant(trUtf8("week"));
 		entry["eventId"] = event.id();
 		entry["accountId"] = event.accountId();
 		entry["subject"] = event.subject().replace('&', "&amp;").replace('<', "&lt;").replace('>', "&gt;").replace('"', "&quot;");

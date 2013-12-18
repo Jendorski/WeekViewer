@@ -10,7 +10,6 @@
 #include <QDateTime>
 #include <bb/cascades/AbstractPane>
 
-
 class ApplicationUI : public QObject
 {
     Q_OBJECT
@@ -44,6 +43,7 @@ private:
 	CustomGroupModel* m_model;
     bb::system::InvokeManager* m_invokeManager;
 
+    QTranslator m_pTranslator;
 };
 
 #endif /* ApplicationUI_HPP_ */

@@ -23,6 +23,12 @@ ApplicationUI::ApplicationUI(QObject *parent)
 {
 	qmlRegisterType<CustomGroupModel>("bb.mymodel", 1, 0, "CustomGroupModel");
 
+	QString locale_string = QLocale().name();
+	QString file_name = QString("WeekViewer_%1").arg(locale_string);
+	if (m_pTranslator.load(file_name, "app/native/qm")) {
+		QCoreApplication::instance()->installTranslator(&m_pTranslator);
+	}
+
     // create scene document from main.qml asset
     // set parent to created document to ensure it exists for the whole application lifetime
     QmlDocument *qml = QmlDocument::create("asset:///main.qml").parent(this);
@@ -53,7 +59,7 @@ void ApplicationUI::openCalendar()
 
 void ApplicationUI::loadEvent(int id, int account, QDateTime start)
 {
-	QString startString = start.toString("yyyy-dd-MM hh:mm:ss");
+	QString startString = start.toString("yyyy-MM-dd hh:mm:ss");
 	qDebug() << "FMI ######### received event " << id << " account " << account << " beginning " << startString;
 
 	InvokeRequest invokeRequest;
@@ -65,17 +71,21 @@ void ApplicationUI::loadEvent(int id, int account, QDateTime start)
 	data.insert("eventId", id);
 	data.insert("type", "event");
 	data.insert("start", startString);
-//	data.insert("start", "2013-07-07 11:00:00");
+//	data.insert("start", "2013-12-07 11:00:00");
 
-	invokeRequest.setData(bb::PpsObject::encode(data, NULL));
+	//invokeRequest.setData(bb::PpsObject::encode(data, NULL));
+	bool ok;
+	QByteArray encData = bb::PpsObject::encode(data, &ok);
+	if (ok) {
+		invokeRequest.setData(encData);
+		// Start the invocation
+		const InvokeReply *reply = m_invokeManager->invoke(invokeRequest);
+	//	reply->setParent(this);
 
-	// Start the invocation
-	const InvokeReply *reply = m_invokeManager->invoke(invokeRequest);
-//	reply->setParent(this);
+		connect(reply, SIGNAL(finished()), this, SLOT(processInvokeReply()));
 
-	connect(reply, SIGNAL(finished()), this, SLOT(processInvokeReply()));
-
-	connectResult = connect(m_invokeManager, SIGNAL(childCardDone(const bb::system::CardDoneMessage&)), this, SLOT(childCardDone(const bb::system::CardDoneMessage&)));
+		connectResult = connect(m_invokeManager, SIGNAL(childCardDone(const bb::system::CardDoneMessage&)), this, SLOT(childCardDone(const bb::system::CardDoneMessage&)));
+	}
 }
 
 void ApplicationUI::childCardDone(const bb::system::CardDoneMessage &message)

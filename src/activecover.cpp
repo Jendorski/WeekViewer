@@ -23,16 +23,23 @@
 
 using namespace bb::cascades;
 
-ActiveCover::ActiveCover(QObject *parent)
-    : SceneCover(parent)
+ActiveCover::ActiveCover(QString colorsThumbnailForeground, QString colorsThumbnailBackground, QObject *parent)
+	: SceneCover(parent),
+	  m_colorsThumbnailForeground(colorsThumbnailForeground), m_colorsThumbnailBackground(colorsThumbnailBackground)
 {
     QmlDocument *qml = QmlDocument::create("asset:///AppCover.qml").parent(parent);
     Container *mainContainer = qml->createRootObject<Container>();
+
+    Color c2 = Color::fromARGB(m_colorsThumbnailForeground.toUInt());
+
+    mainContainer->background(c2);
     setContent(mainContainer);
 
     // Retrieves the label from QML that we want to update
     m_coverLabel = mainContainer->findChild<Label*>("TheLabel");
     m_coverLabel->setParent(mainContainer);
+    m_coverLabel->setProperty("forgroundcolor", "#FFFFFF");
+
 
     QObject::connect(Application::instance(), SIGNAL(thumbnail()), this, SLOT(update()));
 
@@ -45,7 +52,6 @@ void ActiveCover::update() {
 		m_coverLabel->setText(QDate::currentDate().toString("dd.MM.yyyy"));
 	else
 		m_coverLabel->setText(QDate::currentDate().toString(Qt::DefaultLocaleShortDate));
-
 }
 
 

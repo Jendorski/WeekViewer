@@ -9,6 +9,10 @@ NavigationPane {
         content: Container {
 	        layout: DockLayout {}
 	        ListView {
+                function getColorsFullscreenForeground() {
+                    return _app.colorsFullscreenForeground;
+                }
+                
 	            id: listViewToday
 	            objectName: "listView"
 	
@@ -18,12 +22,13 @@ NavigationPane {
 	                ListItemComponent {
 	                    type: "header"
 	                    Label {
+                            id: thisid
 	                    	text : ListItemData
 	                        textStyle {
 	                            base: SystemDefaults.TextStyles.BodyText
 	                            fontWeight: if (ListItemData == "Heute" || ListItemData == "Today") FontWeight.Bold; else FontWeight.Normal;
 	                            fontSize: if (ListItemData == "Heute" || ListItemData == "Today") FontSize.Medium; else FontSize.Small;
-	                            color: Color.Red 
+                                color: Color.create(thisid.ListItem.view.getColorsFullscreenForeground())
 	                        }
 	                        
 	                    }

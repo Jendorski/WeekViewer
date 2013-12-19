@@ -27,7 +27,7 @@ class ActiveCover : public SceneCover
 	Q_OBJECT
 
 public:
-	ActiveCover(QObject *parent = 0);
+	ActiveCover(QString m_colorsThumbnailForeground, QString m_colorsThumbnailBackground, QObject *parent = 0);
 
 
 public slots:
@@ -35,6 +35,9 @@ public slots:
 
 private:
     bb::cascades::Label *m_coverLabel;
+
+    QString m_colorsThumbnailForeground;
+    QString m_colorsThumbnailBackground;
 };
 
 #endif /* ACTIVECOVER_HPP_ */

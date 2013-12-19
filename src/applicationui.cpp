@@ -12,6 +12,7 @@
 #include <bb/cascades/Container>
 #include <bb/cascades/SceneCover>
 #include <bb/system/SystemDialog>
+#include <bb/data/JsonDataAccess>
 
 using namespace bb::cascades;
 using namespace bb::system;
@@ -25,6 +26,8 @@ ApplicationUI::ApplicationUI(QObject *parent)
 	qmlRegisterType<CustomGroupModel>("bb.mymodel", 1, 0, "CustomGroupModel");
 	qmlRegisterType<bb::system::SystemDialog>("bb.system.SystemDialog", 1, 0, "SystemDialog");
 
+	readJsonEntries();
+
 	QString locale_string = QLocale().name();
 	QString file_name = QString("WeekViewer_%1").arg(locale_string);
 	if (m_pTranslator.load(file_name, "app/native/qm")) {
@@ -36,7 +39,7 @@ ApplicationUI::ApplicationUI(QObject *parent)
     QmlDocument *qml = QmlDocument::create("asset:///main.qml").parent(this);
 	qml->setContextProperty("_app", this);
 
-	ActiveCover* scene = new ActiveCover();
+	ActiveCover* scene = new ActiveCover(m_colorsThumbnailForeground, m_colorsThumbnailBackground);
 	Application::instance()->setCover(scene);
 	qml->setContextProperty("activeFrame", scene);
 
@@ -135,4 +138,32 @@ CustomGroupModel* ApplicationUI::model()
 {
 	qDebug() << "FMI ######## load events!";
 	return m_model;
+}
+
+void ApplicationUI::readJsonEntries()
+{
+	// Load the JSON data
+	bb::data::JsonDataAccess jda;
+	QVariant list = jda.load("app/native/assets/models/settings.json");
+	QVariantMap currentEntriesMap = list.value<QVariantList>().first().value<QVariantMap>();
+
+	m_colorsThumbnailForeground = currentEntriesMap["colors-thumbnail-foreground"].toString();
+	m_colorsThumbnailBackground = currentEntriesMap["colors-thumbnail-background"].toString();
+	m_colorsFullscreenForeground = currentEntriesMap["colors-fullscreen-foreground"].toString();
+
+//	qDebug() <<  "#########4 " << m_colorsFullscreenForeground;
+}
+
+QString ApplicationUI::colorsThumbnailForeground()
+{
+	return m_colorsThumbnailForeground;
+}
+
+QString ApplicationUI::colorsThumbnailBackground()
+{
+	return m_colorsThumbnailBackground;
+}
+QString ApplicationUI::colorsFullscreenForeground()
+{
+	return m_colorsFullscreenForeground;
 }

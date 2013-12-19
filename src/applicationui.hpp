@@ -16,6 +16,10 @@ class ApplicationUI : public QObject
 
     Q_PROPERTY(CustomGroupModel* model READ model NOTIFY modelChanged)
 
+    Q_PROPERTY(QString colorsThumbnailForeground READ colorsThumbnailForeground)
+    Q_PROPERTY(QString colorsThumbnailBackground READ colorsThumbnailBackground)
+    Q_PROPERTY(QString colorsFullscreenForeground READ colorsFullscreenForeground)
+
 public:
     ApplicationUI(QObject *parent = 0);
     virtual ~ApplicationUI() {}
@@ -23,7 +27,7 @@ public:
     Q_INVOKABLE void loadEvent(int id, int account, QDateTime start);
     Q_INVOKABLE void openCalendar();
     Q_INVOKABLE void loadEvents();
-
+    Q_INVOKABLE void readJsonEntries();
 
     // If any Q_ASSERT statement(s) indicate that the slot failed to connect to
 	// the signal, make sure you know exactly why this has happened. This is not
@@ -43,6 +47,13 @@ private:
 	CustomGroupModel* model();
 	CustomGroupModel* m_model;
     bb::system::InvokeManager* m_invokeManager;
+
+    QString m_colorsThumbnailForeground;
+    QString m_colorsThumbnailBackground;
+    QString m_colorsFullscreenForeground;
+    QString colorsThumbnailForeground();
+    QString colorsThumbnailBackground();
+    QString colorsFullscreenForeground();
 
     QTranslator m_pTranslator;
 };

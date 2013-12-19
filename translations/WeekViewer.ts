@@ -39,4 +39,15 @@
         <translation>All day</translation>
     </message>
 </context>
+<context>
+    <name>main</name>
+    <message>
+        <source>settings-dialog</source>
+        <translation>Settings</translation>
+    </message>
+    <message>
+        <source>settings-title</source>
+        <translation>WeekViewer Settings</translation>
+    </message>
+</context>
 </TS>

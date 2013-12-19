@@ -4,22 +4,22 @@
 <context>
     <name>ApplicationUI</name>
     <message>
-        <location filename="src/applicationui.cpp" line="102"/>
+        <location filename="src/applicationui.cpp" line="108"/>
         <source>[ErrorBadRequest] Invoke Failed!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/applicationui.cpp" line="105"/>
+        <location filename="src/applicationui.cpp" line="111"/>
         <source>[ErrorInternal] Invoke Failed!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/applicationui.cpp" line="108"/>
+        <location filename="src/applicationui.cpp" line="114"/>
         <source>[ErrorNoTarget] Invoke Failed!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/applicationui.cpp" line="111"/>
+        <location filename="src/applicationui.cpp" line="117"/>
         <source>[ErrorTargetNotOwned] Invoke Failed.</source>
         <translation type="unfinished"></translation>
     </message>

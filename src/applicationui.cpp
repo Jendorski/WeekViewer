@@ -11,6 +11,7 @@
 #include <bb/PpsObject>
 #include <bb/cascades/Container>
 #include <bb/cascades/SceneCover>
+#include <bb/system/SystemDialog>
 
 using namespace bb::cascades;
 using namespace bb::system;
@@ -22,6 +23,7 @@ ApplicationUI::ApplicationUI(QObject *parent)
 	, m_model(new CustomGroupModel())
 {
 	qmlRegisterType<CustomGroupModel>("bb.mymodel", 1, 0, "CustomGroupModel");
+	qmlRegisterType<bb::system::SystemDialog>("bb.system.SystemDialog", 1, 0, "SystemDialog");
 
 	QString locale_string = QLocale().name();
 	QString file_name = QString("WeekViewer_%1").arg(locale_string);

@@ -39,4 +39,15 @@
         <translation>Ganztägig</translation>
     </message>
 </context>
+<context>
+    <name>main</name>
+    <message>
+        <source>settings-dialog</source>
+        <translation>Einstellungen</translation>
+    </message>
+    <message>
+        <source>settings-title</source>
+        <translation>WeekViewer Einstellungen</translation>
+    </message>
+</context>
 </TS>

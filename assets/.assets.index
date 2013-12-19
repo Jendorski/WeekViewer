@@ -1,5 +1,5 @@
 1
-13
+12
 images/ic_rotate.png
 images/pink.png
 images/darkgreen.png
@@ -12,4 +12,3 @@ images/darkgrey.png
 images/blue.png
 main.qml
 AppCover.qml
-mydata.json

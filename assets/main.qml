@@ -28,50 +28,9 @@ Page {
                 ListItemComponent {
                         type: "item"
                         StandardListItem {
-                        title: "<html><body><span style=\"color:#" + ListItemData.color24 + "\">o </span>" +  ListItemData.subject + "</body></html>"
-//                        title: ListItemData.subject 
-                        description: ListItemData.timeString
-//                            imageSource: if (ListItemData.account == 1) "asset:///images/grey.png";
-//                                        else if (ListItemData.account == 2) "asset:///images/blue.png";
-//                                        else if (ListItemData.account == 3) "asset:///images/pink.png";
-//                                        else if (ListItemData.account == 4) "asset:///images/green.png";
-//                                        else if (ListItemData.account == 5) "asset:///images/darkgreen.png";
-//                                        else if (ListItemData.account == 6) "asset:///images/braun.png"
+                        	title: "<html><body><span style=\"color:#" + ListItemData.color24 + "\">o </span>" +  ListItemData.subject + "</body></html>"
+                            description: ListItemData.timeString
                         }
-//                    Container {
-//                        layout: StackLayout {
-//                            orientation: LayoutOrientation.TopToBottom
-//                        }
-//                        Container {
-//                            layout: StackLayout {
-//                                orientation: LayoutOrientation.LeftToRight
-//                            }
-//                            
-////                            ImageView {
-////                                imageSource: if (ListItemData.account == 1) "asset:///images/grey.png";
-////                                			else if (ListItemData.account == 2) "asset:///images/blue.png";
-////                                			else if (ListItemData.account == 3) "asset:///images/pink.png";
-////                                			else if (ListItemData.account == 4) "asset:///images/green.png";
-////                                			else if (ListItemData.account == 5) "asset:///images/darkgreen.png";
-////                                			else if (ListItemData.account == 6) "asset:///images/braun.png"
-////                            }
-//                            Label {
-//                                text: "  " + ListItemData.subject
-//                                textStyle {
-//                                    base: SystemDefaults.TextStyles.BodyText
-//                                    fontWeight: FontWeight.Normal
-//                                    color: if (ListItemData.account == 1) Color.Magenta; else Color.Blue
-//                                }
-//
-//                            }
-//                        }
-//                        Label {
-//                            text: "  " + ListItemData.timeString
-//                            textStyle {
-//                                base: SystemDefaults.TextStyles.SmallText
-//                            }
-//                        }
-//                    } // end of Container
                 }
             ]
             onTriggered: {
@@ -114,9 +73,15 @@ Page {
     
     onCreationCompleted: {
         console.log("Page - onCreationCompleted()")
+        
+        Application.fullscreen.connect(onFullscreen);
 
         // populate list view model with the sample data
-        _app.loadEvents()
+        _app.loadEvents();
+    }
+    
+    function onFullscreen() {
+        _app.loadEvents();
     }
     
 }

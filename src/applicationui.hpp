@@ -24,6 +24,7 @@ public:
     Q_INVOKABLE void openCalendar();
     Q_INVOKABLE void loadEvents();
 
+
     // If any Q_ASSERT statement(s) indicate that the slot failed to connect to
 	// the signal, make sure you know exactly why this has happened. This is not
 	// normal, and will cause your app to stop working!!
